@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('load', function() {
     const ctaButtons = document.querySelectorAll('#customCarousel1 .btn1');
     ctaButtons.forEach((ctaButton) => {
         ctaButton.addEventListener('click', function() {
@@ -20,7 +20,3 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     })
 });
-
-// `body > section.shop_section.layout_padding > div > div.row > div > div > a`
-// `body > section.shop_section.layout_padding > div > div.row > div > div > a`
-// `body > section.shop_section.layout_padding > div > div.row > div > div > a`
