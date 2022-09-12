@@ -1,10 +1,9 @@
 
-const ctaButtons = document.querySelectorAll('#customCarousel1 .btn1');
-ctaButtons.forEach((ctaButton) => {
-    ctaButton.addEventListener('click', function() {
-        window.analytics.track('ctaClick');
-    });
-})
+const ctaButton = document.querySelector('#navbarSupportedContent > ul > li:nth-child(3) > a');
+ctaButton.addEventListener('click', function() {
+    window.analytics.track('ctaClick');
+});
+
 
 const buyButtons = document.querySelectorAll('body > section.shop_section.layout_padding > div > div.row > div > div > a');
 buyButtons.forEach((buyButton) => {
