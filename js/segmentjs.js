@@ -1,4 +1,3 @@
-
 const ctaButton = document.querySelector('#navbarSupportedContent > ul > li:nth-child(3) > a');
 ctaButton.addEventListener('click', function() {
     window.analytics.track('ctaClick');
