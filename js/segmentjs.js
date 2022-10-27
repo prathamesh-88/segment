@@ -3,6 +3,7 @@ if (ctaButton){
     ctaButton.addEventListener('click', function() {
         console.log('contactNowClick');
         window.analytics.track('contactNowClick');
+        window.analytics.track('ctaClick');
     });
 }
 
