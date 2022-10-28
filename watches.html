@@ -25,6 +25,15 @@
       analytics.page();
       }}();
     </script>
+    <script>
+        const getCookie = function(name) {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) return parts.pop().split(';').shift();
+      }  
+    payload.obj.vwo_uuid = getCookie('_vwo_uuid');
+    next();
+    </script>
   <!-- Basic -->
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
