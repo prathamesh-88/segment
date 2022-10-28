@@ -28,16 +28,12 @@
 
   <script>
     analytics.addSourceMiddleware(({payload, next, integrations})=>{
-        const eventProp = Object.assign({},  payload.obj);
-        delete eventProp.properties["page"];
-        delete eventProp.properties["isCustomEvent"];
-        console.log(eventProp);
-        switch(eventProp.type){
+        console.log(payload.obj);
+        switch(payload.obj.type){
           case "track" : 
-            console.log("track");
             window.VWO = window.VWO || [];
             VWO.event = VWO.event || function () {VWO.push(["event"].concat([].slice.call(arguments)))};
-            VWO.event(eventProp["event"], eventProp.properties);
+            VWO.event(payload["obj"]["event"], {...payload["obj"]["properties"]});
             console.log("track");
             break;
           case "page":
