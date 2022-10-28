@@ -33,8 +33,8 @@
         switch(event.type){
           case "track" : 
             window.VWO = window.VWO || [];
-              window.VWO.event = VWO.event || function () {VWO.push(["event"].concat([].slice.call(arguments)))};
-              window.VWO.event(eventProp["event"], eventProp.properties);
+            window.VWO.event = VWO.event || function () {VWO.push(["event"].concat([].slice.call(arguments)))};
+            window.VWO.event(eventProp["event"], eventProp.properties);
             console.log("track");
             break;
           case "page":
