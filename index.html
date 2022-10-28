@@ -28,18 +28,13 @@
 
   <script>
     analytics.addSourceMiddleware(({payload, next, integrations})=>{
-        const getCookie = function(name) {
-            const value = `; ${document.cookie}`;
-            const parts = value.split(`; ${name}=`);
-            if (parts.length === 2) return parts.pop().split(';').shift();
-            }
-        payload.obj.vwo_uuid = getCookie('_vwo_uuid');
         const event = payload.obj;
+        console.log("event", event);
         switch(event.type){
           case "track" : 
             window.VWO = window.VWO || [];
-	          window.VWO.event = VWO.event || function () {VWO.push(["event"].concat([].slice.call(arguments)))};
-	          window.VWO.event(event["event"], event.properties);
+              window.VWO.event = VWO.event || function () {VWO.push(["event"].concat([].slice.call(arguments)))};
+              window.VWO.event(event["event"], event.properties);
             console.log("track");
             break;
           case "page":
@@ -48,7 +43,7 @@
         }
         console.log(payload.obj);
         next();
-  });
+    });
   </script>
   <!-- Basic -->
   <meta charset="utf-8" />
