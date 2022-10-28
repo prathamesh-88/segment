@@ -28,7 +28,7 @@
 
   <script>
     analytics.addSourceMiddleware(({payload, next, integrations})=>{
-        const event = payload.obj;
+        const event = Object.assign({},  payload.obj);
         console.log("event", event);
         switch(event.type){
           case "track" : 
@@ -42,7 +42,7 @@
             break;
         }
         console.log(payload.obj);
-        next();
+        next(payload);
     });
   </script>
   <!-- Basic -->
