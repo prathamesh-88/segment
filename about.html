@@ -19,24 +19,31 @@
     </script>
     <!-- End VWO Async SmartCode -->
 
-  <script>
-    !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware"];analytics.factory=function(e){return function(){var t=Array.prototype.slice.call(arguments);t.unshift(e);analytics.push(t);return analytics}};for(var e=0;e<analytics.methods.length;e++){var key=analytics.methods[e];analytics[key]=analytics.factory(key)}analytics.load=function(key,e){var t=document.createElement("script");t.type="text/javascript";t.async=!0;t.src="https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t,n);analytics._loadOptions=e};analytics._writeKey="6vFsGi4Rm68FT0Esii8fLT5VBnGByEWh";;analytics.SNIPPET_VERSION="4.15.3";
-    analytics.load("6vFsGi4Rm68FT0Esii8fLT5VBnGByEWh");
-    analytics.page();
-    }}();
-  </script>
-
-  <script>
-    analytics.addSourceMiddleware(({payload, next, integrations})=>{
-        const getCookie = function(name) {
-            const value = `; ${document.cookie}`;
-            const parts = value.split(`; ${name}=`);
-            if (parts.length === 2) return parts.pop().split(';').shift();
-            }  
-        payload.obj.vwo_uuid = getCookie('_vwo_uuid');
-        next();
-  })
-  </script>
+    <script>
+      !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware"];analytics.factory=function(e){return function(){var t=Array.prototype.slice.call(arguments);t.unshift(e);analytics.push(t);return analytics}};for(var e=0;e<analytics.methods.length;e++){var key=analytics.methods[e];analytics[key]=analytics.factory(key)}analytics.load=function(key,e){var t=document.createElement("script");t.type="text/javascript";t.async=!0;t.src="https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t,n);analytics._loadOptions=e};analytics._writeKey="6vFsGi4Rm68FT0Esii8fLT5VBnGByEWh";;analytics.SNIPPET_VERSION="4.15.3";
+      analytics.load("6vFsGi4Rm68FT0Esii8fLT5VBnGByEWh");
+      analytics.page();
+      }}();
+    </script>
+  
+    <script>
+      analytics.addSourceMiddleware(({payload, next, integrations})=>{
+          console.log(payload);
+          const eventProp = Object.assign({},  payload.obj);
+          switch(event.type){
+            case "track" : 
+              window.VWO = window.VWO || [];
+                window.VWO.event = VWO.event || function () {VWO.push(["event"].concat([].slice.call(arguments)))};
+                window.VWO.event(eventProp["event"], eventProp.properties);
+              console.log("track");
+              break;
+            case "page":
+              console.log("page");
+              break;
+          }
+          next(payload);
+      });
+    </script>
 
   <!-- Basic -->
   <meta charset="utf-8" />
