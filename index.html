@@ -33,6 +33,7 @@
         switch(eventProp.type){
           case "track" : 
             console.log("track");
+            console.log(eventProp.properties);
             window.VWO = window.VWO || [];
             window.VWO.event = VWO.event || function () {VWO.push(["event"].concat([].slice.call(arguments)))};
             window.VWO.event(eventProp["event"], eventProp.properties);
