@@ -2,7 +2,7 @@ const ctaButton = document.querySelector('#navbarSupportedContent > ul > li:nth-
 if (ctaButton){
     ctaButton.addEventListener('click', function() {
         console.log('contactNowClick');
-        window.analytics.track('contactNowClick');
+        window.analytics.track('ContactNowClick');
         window.analytics.track('ctaClick');
     });
 }
