@@ -17,6 +17,7 @@ if (contactForm){
         window.analytics.track('contactFormSubmitted', {
             leadName
         });
+        window.analytics.identify({leadName})
         contactForm.reset();
     });
 }
