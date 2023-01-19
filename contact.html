@@ -30,7 +30,7 @@
           const parts = value.split(`; ${name}=`);
           if (parts.length === 2) return parts.pop().split(';').shift();
           }
-      payload.obj.vwo_uuid = getCookie('_vwo_uuid');
+      payload.obj.properties.vwo_uuid = getCookie('_vwo_uuid');
       next();
     })
   </script>
