@@ -30,7 +30,12 @@
             const parts = value.split(`; ${name}=`);
             if (parts.length === 2) return parts.pop().split(';').shift();
             }
-        payload.obj.properties.vwo_uuid = getCookie('_vwo_uuid');
+        console.log(payload.obj);
+        if (payload.obj.type === "track" || payload.obj.type === "page"){
+          payload.obj.properties.vwo_uuid = getCookie('_vwo_uuid');
+        }else if(payload.obj.type === "identify"){
+          payload.obj.traits.vwo_uuid = getCookie('_vwo_uuid');
+        }
         next();
       })
   </script>
