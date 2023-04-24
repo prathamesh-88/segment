@@ -12,6 +12,27 @@
     });
     </script>
   
+  <script>
+    function getCookie(cookieName) {
+      var name = cookieName + "=";
+      var decodedCookie = decodeURIComponent(document.cookie);
+      var cookieArray = decodedCookie.split(';');
+      for(var i = 0; i < cookieArray.length; i++) {
+        var cookie = cookieArray[i].trim();
+        if (cookie.indexOf(name) === 0) {
+          return cookie.substring(name.length, cookie.length);
+        }
+      }
+      return null; // If cookie not found
+    }
+
+    window.addEventListener('DOMContentLoaded', ()=>{
+      var vwoUuid = getCookie('_vwo_uuid');
+      console.info(`VWO UUID: ${vwoUuid}`)
+      window.Moengage.add_user_attribute("vwoUuid", vwoUuid);
+      Moengage.track_event("ctaClick");
+    })
+  </script>
   <!-- Start VWO Async SmartCode -->
   <script type='text/javascript' id='vwoCode'>
     window._vwo_code=window._vwo_code || (function() {
