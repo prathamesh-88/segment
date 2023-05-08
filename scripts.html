@@ -1,0 +1,68 @@
+<!-- MoEngage Code -->
+<script type="text/javascript">
+    !function(e,n,i,t,a,r,o,d){var s=e[a]=e[a]||[];if(s.invoked=0,s.initialised>0||s.invoked>0)return console.error("MoEngage Web SDK initialised multiple times. Please integrate the Web SDK only once!"),!1;e.moengage_object=a;var l={},g=function n(i){return function(){for(var n=arguments.length,t=Array(n),a=0;a<n;a++)t[a]=arguments[a];(e.moengage_q=e.moengage_q||[]).push({f:i,a:t})}},u=["track_event","add_user_attribute","add_first_name","add_last_name","add_email","add_mobile","add_user_name","add_gender","add_birthday","destroy_session","add_unique_user_id","moe_events","call_web_push","track","location_type_attribute"],m={onsite:["getData","registerCallback"]};for(var c in u)l[u[c]]=g(u[c]);for(var v in m)for(var f in m[v])null==l[v]&&(l[v]={}),l[v][m[v][f]]=g(v+"."+m[v][f]);r=n.createElement(i),o=n.getElementsByTagName("head")[0],r.async=1,r.src=t,o.appendChild(r),e.moe=e.moe||function(){return(s.invoked=s.invoked+1,s.invoked>1)?(console.error("MoEngage Web SDK initialised multiple times. Please integrate the Web SDK only once!"),!1):(d=arguments.length<=0?void 0:arguments[0],l)},r.addEventListener("load",function(){if(d)return e[a]=e.moe(d),e[a].initialised=e[a].initialised+1||1,!0}),r.addEventListener("error",function(){return console.error("Moengage Web SDK loading failed."),!1})}(window,document,"script","https://cdn.moengage.com/webpush/moe_webSdk.min.latest.js","Moengage");
+  
+  
+    Moengage = moe({
+    app_id:"4ED256LP14Y9KGQHPHK3GGMA",
+    debug_logs: 0
+    });
+</script>  
+<script>
+    function getCookie(cookieName) {
+      var name = cookieName + "=";
+      var decodedCookie = decodeURIComponent(document.cookie);
+      var cookieArray = decodedCookie.split(';');
+      for(var i = 0; i < cookieArray.length; i++) {
+        var cookie = cookieArray[i].trim();
+        if (cookie.indexOf(name) === 0) {
+          return cookie.substring(name.length, cookie.length);
+        }
+      }
+      return null; // If cookie not found
+    }
+
+    window.addEventListener('DOMContentLoaded', ()=>{
+      var vwoUuid = getCookie('_vwo_uuid');
+      console.info(`VWO UUID: ${vwoUuid}`)
+      window.Moengage.add_user_attribute("vwoUuid", vwoUuid);
+      Moengage.track_event("ctaClick");
+    })
+  </script>
+  
+  <!-- MoEngage Script Ended -->
+
+  <!-- Segment Code -->
+  <script>
+    !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware"];analytics.factory=function(e){return function(){var t=Array.prototype.slice.call(arguments);t.unshift(e);analytics.push(t);return analytics}};for(var e=0;e<analytics.methods.length;e++){var key=analytics.methods[e];analytics[key]=analytics.factory(key)}analytics.load=function(key,e){var t=document.createElement("script");t.type="text/javascript";t.async=!0;t.src="https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t,n);analytics._loadOptions=e};analytics._writeKey="6vFsGi4Rm68FT0Esii8fLT5VBnGByEWh";;analytics.SNIPPET_VERSION="4.15.3";
+    analytics.load("6vFsGi4Rm68FT0Esii8fLT5VBnGByEWh");
+    analytics.page();
+    }}();
+  </script>
+  <!-- Segment Code End -->
+  
+  
+  <!-- Segment Cloud Mode Middleware -->
+  <script>
+    analytics.addSourceMiddleware(({payload, next, integrations})=>{
+      const getCookie = function(name) {
+        const value = `; ${document.cookie}`;
+          const parts = value.split(`; ${name}=`);
+          if (parts.length === 2) return parts.pop().split(';').shift();
+      }
+      const event = payload.obj;
+      const vwoUuid = getCookie('_vwo_uuid');
+      switch(event.type){
+        case "track":
+        case "page": 
+          payload.obj.properties.vwo_uuid = vwoUuid
+          break;
+        case "identify":
+          payload.obj.traits.vwo_uuid = vwoUuid
+          break;
+      }
+      next();
+    })
+  </script>
+  <!-- Middleware ended -->
+
