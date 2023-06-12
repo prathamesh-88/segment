@@ -66,3 +66,14 @@
   </script>
   <!-- Middleware ended -->
 
+  <script>
+    analytics.addSourceMiddleware(({payload, next, integrations})=>{
+      const eventObj = payload.obj;
+      if (eventObj.type === "track" && eventObj.event === "Experiment Viewed") {
+        console.log(event)
+        payload.obj.event = "Altered Name"
+      }
+      next();
+    })
+    </script>
+
