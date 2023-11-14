@@ -5,9 +5,10 @@
   <!-- Start VWO Async SmartCode -->
   <link rel="preconnect" href="https://dev.visualwebsiteoptimizer.com" />
   <script type='text/javascript' id='vwoCode'>
-    window._vwo_code || (function() {
     const params = new URLSearchParams(window.location.search);
     const accountId = params.get("accountId");
+    window._vwo_code || (function() {
+    account_id=accountId,
     version=2.0,
     settings_tolerance=2000,
     hide_element='body',
